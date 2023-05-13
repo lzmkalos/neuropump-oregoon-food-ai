@@ -11,45 +11,38 @@ from server import db;
 
 
 #===: Model User
-class Users(db.Model):
-    __tablename__ = 'users';
-    id = db.Column(db.String(36), primary_key=True, default=lambda: str(uuid.uuid4()), server_default=db.text("uuid_generate_v4()"), unique=True);
-    firstname = db.Column(db.String(20), nullable=False, unique=False);
-    lastname = db.Column(db.String(20), nullable=False, unique=False);
-    age = db.Column(db.Integer, unique=False, nullable=False);
-    nickname = db.Column(db.String(20), nullable=False, unique=True);
-    email = db.Column(db.String(80), nullable=False, unique=True);
-    password = db.Column(db.String(80), nullable=False, unique=False);
-    creationDate = db.Column(db.DateTime, default=datetime.utcnow());
-    imageProfile = db.Column(db.String(255), default=None);
-    def __init__(self, firstname, lastname, age, nickname, email, password):
-        self.firstname = firstname;
-        self.lastname = lastname;
-        self.age = age;
-        self.nickname = nickname;
-        self.email = email;
-        self.password = password;
-        self.imageProfile = None;
-        self.creationDate = datetime.utcnow();
+class Costumer(db.Model):
+    __tablename__ = 'costumer';
+    id = db.Column(db.Integer(), primary_key=True, unique=True);
+    name = db.Column(db.String(255), nullable=False, unique=False);
+    type = db.Column(db.String(255), nullable=False, unique=False);
+    commercial = db.Column(db.String(255), unique=False, nullable=False);
+    schedule = db.Column(db.Datetime, default=datetime.utcnow(), nullable=False, unique=True);
+    observation = db.Column(db.String(500), nullable=False, unique=True);
+    def __init__(self, id, name, type, commercial, schedule, observation):
+        self.id = id;
+        self.name = name;
+        self.type = type;
+        self.commercial = commercial;
+        self.schedule = datetime.utcnow();
+        self.observation = observation;
     def serialize(self):
         return {
             'id': self.id,
-            'firstname': self.firstname,
-            'lastname': self.lastname,
-            'age': self.age,
-            'nickname': self.nickname,
-            'email': self.email,
-            'password': self.password,
-            'imageProfile': self.imageProfile,
-            'creationDate': self.creationDate,
+            'name': self.name,
+            'type': self.type,
+            'commercial': self.commercial,
+            'schedule': self.schedule,
+            'observation': self.observation,
         };
 
-class Bet(db.Model):
-    __tablename__ = 'bet';
+class Product(db.Model):
+    __tablename__ = 'product';
     id = db.Column(db.String(36), primary_key=True, default=lambda: str(uuid.uuid4()), server_default=db.text("uuid_generate_v4()"), unique=True);
-    quantityDollar = db.Column(db.Integer(), nullable=False, unique=False);
-    creationDate = db.Column(db.DateTime, default=datetime.utcnow());
-    user_id = db.Column(db.String(36), db.ForeignKey('users.id'), nullable=False);
+    description = db.Column(db.Integer(), nullable=False, unique=False);
+    quantity = db.Column(db.DateTime, default=datetime.utcnow());
+    weight = db.Column(db.String(100), nullable=False);
+    unit = db.Column(db.String(10), nullable=False);
     def __init__(self, id, quantityDollar):
         self.id = id;
         self.quantityDollar = quantityDollar;

@@ -29,7 +29,7 @@ Aplicación web que permite al personal de Oregon Food registrar sus pedidos de 
 - WT
 
 ## Modelo Relacional de Base de Datos
-![]("Oregon Foods - Entidad Relación.png")
+<img src="./src/entity-model.png">
 
 ## 🚀 Desplegar aplicación
 <p align="justify">
