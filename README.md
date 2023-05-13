@@ -28,6 +28,8 @@ Aplicación web que permite al personal de Oregon Food registrar sus pedidos de 
 - SQLAlchemy
 - WT
 
+## Modelo Relacional de Base de Datos
+![]("C:\Users\corlo\Desktop\Oregon Foods - Entidad Relación.png")
 
 ## 🚀 Desplegar aplicación
 <p align="justify">
