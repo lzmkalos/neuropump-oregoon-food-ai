@@ -29,7 +29,7 @@ Aplicación web que permite al personal de Oregon Food registrar sus pedidos de 
 - WT
 
 ## Modelo Relacional de Base de Datos
-![]("C:\Users\corlo\Desktop\UTEC\Programacion3\neuropump-oregoon-food-ai\Oregon Foods - Entidad Relación.png")
+![]("Oregon Foods - Entidad Relación.png")
 
 ## 🚀 Desplegar aplicación
 <p align="justify">
