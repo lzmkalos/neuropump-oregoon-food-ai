@@ -1,6 +1,6 @@
 # Oregon Food - Deep Learning AI
 
-<img src="./src/tumipalace.gif">
+<img src="./src/neuro_pump.gif">
 
 
 ## 🫂 Integrantes
