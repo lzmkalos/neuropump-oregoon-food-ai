@@ -19,13 +19,17 @@ class Costumer(db.Model):
     commercial = db.Column(db.String(255), unique=False, nullable=False);
     schedule = db.Column(db.Datetime, default=datetime.utcnow(), nullable=False, unique=True);
     observation = db.Column(db.String(500), nullable=False, unique=True);
-    def __init__(self, id, name, type, commercial, schedule, observation):
+    coordinates = db.Column(db.Float(), nullable=False, unique=True);
+    zone = db.Column(db.Integer(), nullable=False, unique=True);
+    def __init__(self, id, name, type, commercial, schedule, observation, coordinates, zone):
         self.id = id;
         self.name = name;
         self.type = type;
         self.commercial = commercial;
-        self.schedule = datetime.utcnow();
+        self.schedule = schedule;
         self.observation = observation;
+        self.coordinates = coordinates;
+        self.zone = zone;
     def serialize(self):
         return {
             'id': self.id,
@@ -34,62 +38,90 @@ class Costumer(db.Model):
             'commercial': self.commercial,
             'schedule': self.schedule,
             'observation': self.observation,
+            'coordinates': self.coordinates,
+            'zone': self.zone,
         };
 
 class Product(db.Model):
     __tablename__ = 'product';
     id = db.Column(db.String(36), primary_key=True, default=lambda: str(uuid.uuid4()), server_default=db.text("uuid_generate_v4()"), unique=True);
     description = db.Column(db.Integer(), nullable=False, unique=False);
-    quantity = db.Column(db.DateTime, default=datetime.utcnow());
-    weight = db.Column(db.String(100), nullable=False);
-    unit = db.Column(db.String(10), nullable=False);
-    def __init__(self, id, quantityDollar):
+    quantity = db.Column(db.Integer(), nullable=False, unique=False);
+    weight = db.Column(db.Integer(), nullable=False, unique=False);
+    unit = db.Column(db.String(10), nullable=False, unique=False);
+    def __init__(self, id, description, quantity, weight, unit):
         self.id = id;
-        self.quantityDollar = quantityDollar;
-        self.creationDate = datetime.utcnow();
-    def serialize(self):
-        return {
-            'id': self.id,
-            'quantityDollar': self.quantityDollar,
-            'creationDate': self.creationDate,
-        };
-
-class Game(db.Model):
-    __tablename__ = 'games';
-    id = db.Column(db.String(36), primary_key=True, default=lambda: str(uuid.uuid4()), server_default=db.text("uuid_generate_v4()"), unique=True);
-    name = db.Column(db.String(255), nullable=False);
-    description = db.Column(db.Text, nullable=True);
-    imageGame = db.Column(db.String(255), default=None);
-    def __init__(self, id, name, description, imageGame):
-        self.id = id;
-        self.name = name;
         self.description = description;
-        self.imageGame = imageGame;
+        self.quantity = quantity;
+        self.weight = weight;
+        self.unit = unit;
     def serialize(self):
         return {
             'id': self.id,
-            'name': self.name,
             'description': self.description,
-            'imageGame': self.imageGame,
+            'quantity': self.quantity,
+            'weight': self.weight,
+            'unit': self.unit,
         };
 
-class Deposit(db.Model):
-    __tablename__ = 'deposit';
-    id = db.Column(db.String(36), primary_key=True, default=lambda: str(uuid.uuid4()), server_default=db.text("uuid_generate_v4()"), unique=True);
-    quantityDollar = db.Column(db.Integer(), nullable=False, unique=False);
-    creationDate = db.Column(db.DateTime, default=datetime.utcnow());
-    user_id = db.Column(db.String(36), db.ForeignKey('users.id'), nullable=False);
-    def __init__(self, id, quantityDollar):
+class Vehicle(db.Model):
+    __tablename__ = 'vehicle';
+    license_plate = db.Column(db.String(6), primary_key=True, unique=True);
+    capacity = db.Column(db.Float(), nullable=False);
+    volume = db.Column(db.Float(), nullable=False);
+    supplier = db.Column(db.String(255), default=None);
+    type = db.Column(db.String(255), default=None);
+    legalName = db.Column(db.String(255), default=None);
+    def __init__(self, license_plate, capacity, volume, supplier, type, legalName):
+        self.license_plate = license_plate;
+        self.capacity = capacity;
+        self.volume = volume;
+        self.supplier = supplier;
+        self.type = type;
+        self.legalName = legalName;
+    def serialize(self):
+        return {
+            'license_plate': self.license_plate,
+            'capacity': self.capacity,
+            'volume': self.volume,
+            'supplier': self.supplier,
+            'type': self.type,
+            'legalName': self.legalName,
+        };
+
+class Order(db.Model):
+    __tablname__ = 'order';
+    id = db.Column(db.String(255), primary_key=True, nullable=False);
+    totalWeight = db.Column(db.Float(), nullable=False);
+    unit = db.Column(db.String(10), nullable=False);
+    date = db.Column(db.Datetime, default=datetime.utcnow(), nullable=False, unique=False);
+    def __init__(self, id, totalWeight, unit):
         self.id = id;
-        self.quantityDollar = quantityDollar;
-        self.creationDate = datetime.utcnow();
+        self.totalWeight = totalWeight;
+        self.unit = unit;
+        self.date = datetime.utcnow();
     def serialize(self):
         return {
             'id': self.id,
-            'quantityDollar': self.quantityDollar,
-            'creationDate': self.creationDate,
+            'totalWeight': self.quantityDollar,
+            'unit': self.creationDate,
+            'date': self.date
         };
 
+class Route(db.Model):
+    __tablename__ = 'route';
+    orderID = db.Column(db.String(255), db.ForeignKey('order.id'), nullable=False);
+    posStart = db.Column(db.Float(), nullable=False, unique=False);
+    postEnd = db.Column(db.Float(), nullable=False, unique=False);
+    def __init__(self, posStart, posEnd):
+        self.posStart = posStart;
+        self.posEnd = posEnd;
+    def serialize(self):
+        return {
+            'id': self.id,
+            'posStart': self.posStart,
+            'posEnd': self.posEnd,
+        };
 
 #===: Tables Auth
 class LoginForm(FlaskForm):
@@ -97,8 +129,8 @@ class LoginForm(FlaskForm):
     userPass = PasswordField(validators=[InputRequired(), Length(min=5, max=80)], render_kw={"placeholder": "Contraseña"});
     submit = SubmitField("Registrarse");
     def checkDatabaseRepetition(self, userAge, userNickname, userEmail):
-        nicknameExists = Users.query.filter_by(nickname=userNickname.data).first();
-        userEmailExists = Users.query.filter_by(email=userEmail.data).first();
+        nicknameExists = Costumer.query.filter_by(nickname=userNickname.data).first();
+        userEmailExists = Costumer.query.filter_by(email=userEmail.data).first();
 
 class RegisterForm(FlaskForm):
     userFirstname = StringField(validators=[InputRequired(), Length(min=5, max=20)], render_kw={"placeholder": "Nombre"});
@@ -109,8 +141,8 @@ class RegisterForm(FlaskForm):
     userPass = PasswordField(validators=[InputRequired(), Length(min=5, max=80)], render_kw={"placeholder": "Contraseña"});
     submit = SubmitField("Registrarse");
     def checkDatabaseRepetition(self, userAge, userNickname, userEmail):
-        nicknameExists = Users.query.filter_by(nickname=userNickname.data).first();
-        userEmailExists = Users.query.filter_by(email=userEmail.data).first();
+        nicknameExists = Costumer.query.filter_by(nickname=userNickname.data).first();
+        userEmailExists = Costumer.query.filter_by(email=userEmail.data).first();
         if userAge < 18:
             raise ValidationError("Lo lamentamos, para poder crear una cuenta debes ser mayor de edad.");
         if nicknameExists:
