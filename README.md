@@ -66,12 +66,12 @@ A continuación
 Para poder correr la aplicación en PostgreSQL de manera local necesitamos crear nuestra base de datos, de la siguiente forma `CREATE DATABASE dev_oregon_db;`. Posteriormente debemos considerar crear un ambiente virtual dentro de python para correr el gestor de tablas, tal que `python3 -m veenv env`, siendo `env` el ambiente virtual.
 
 ## 💽 Componentes
-- Interfaz de usuario
+#### Interfaz de usuario
 Usaremos una aplicación web cuyo fin será agregar los nuevos produtos que Oregon Foods Perú comercializará. Crearemos un formulario en HTML que se conectará con la base de datos para que los nuevos productos sean directamente agregados a la misma. La interfaz estará construida con la combinación de HTML, CSS, Python y JavaScript. HTML creará la interfaz en lenguaje marcado de hipertexto, CSS se encargará de darle un diseño agradable a la vista, Python será el encargado de configurar las librerías necesarias para poder conectarse a la base de datos y JavaScript servirá para programar todas las funciones necesarias en la interacción del usuario con la aplicación.
-- Base de Datos
+#### Base de Datos
 PostgreSQL será el sistema de gestión de base de datos que utilizaremos.
-- Controlador de reglas
-- Controlador de archivos
+#### Controlador de reglas
+#### Controlador de archivos
 
 ## 📊  Diagramas
 ...
