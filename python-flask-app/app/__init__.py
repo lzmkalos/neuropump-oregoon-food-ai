@@ -7,7 +7,7 @@ from flask_bcrypt import Bcrypt;
 
 #===: Setup :===
 db = SQLAlchemy();
-dbConfig = "postgresql://postgres@localhost:5432/dev_tumi_db";
+dbConfig = "postgresql://postgres@localhost:5432/dev_oregon_db";
 
 
 def create_app():

@@ -62,7 +62,8 @@ A continuación
 
 
 ## 🚀 Deployment
-...
+### PostgreSQL
+Para poder correr la aplicación en PostgreSQL de manera local necesitamos crear nuestra base de datos, de la siguiente forma `CREATE DATABASE dev_oregon_db;`. Posteriormente debemos considerar crear un ambiente virtual dentro de python para correr el gestor de tablas, tal que `python3 -m veenv env`, siendo `env` el ambiente virtual.
 
 ## 💽 Componentes
 #### Interfaz de usuario
