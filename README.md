@@ -70,9 +70,20 @@ Para poder correr la aplicación en PostgreSQL de manera local necesitamos crear
 Usaremos una aplicación web cuyo fin será agregar los nuevos productos que Oregon Foods Perú comercializará. Crearemos un formulario en HTML que se conectará con la base de datos para que los nuevos productos sean directamente agregados a la misma. La interfaz estará construida con la combinación de HTML, CSS, Python y JavaScript. HTML creará la interfaz en lenguaje marcado de hipertexto, CSS se encargará de darle un diseño agradable a la vista, Python será el encargado de configurar las librerías necesarias para poder conectarse a la base de datos y JavaScript servirá para programar todas las funciones necesarias en la interacción del usuario con la aplicación.
 #### Base de Datos
 PostgreSQL será el sistema de gestión de base de datos que utilizaremos. Es un sistema robusto y estable capaz de manejar el volumen de datos que Oregon Foods Perú utiliza cotidianamente y es escalable. Posee también las funciones de seguridad necesarias, tales como control de privilegios, autenticación y cifrado de datos. Por supuesto, es compatible con el lenguaje de programación C++, el cual utilizaremos para crear nuestro algoritmo de backpropagation. 
-#### Controlador de reglas
 
-#### Controlador de archivos
+#### Controlador de acceso
+Capa de acceso a datos segura: la información más "delicada" o "sensible" se encuentra en la base de datos de Oregon Foods. Utilizaremos técnicas como validación de datos de entrada, uso de consultas parametrizadas en la base de datos, entre otros, para evitar diferentes tipos de vulnerabilidades o ataques a la base de datos. 
+
+#### Librerías/Paquetes
+- *Standar Template Library (STL):* la biblioteca estándar de C++ nos proporcionará diferentes tipos de estructuras de datos y algoritmos que utilizaremos a lo largo del desarrollo del proyecto. Los contenedores nos servirán para almacenar y manipular los datos y también para ordenar, filtrar y/o buscar diferentes elementos.
+
+- *TensorFlow:* biblioteca de aprendizaje automático de código abierto desarrollada por Google. Nos ofrece diferentes herramientas, junto con funciones que nos permitirán construir y entrenar redes neuronales a través del algoritmo "backpropagation".
+
+- *Caffe:* biblioteca de aprendizaje automático desarrollada por Berkeley AI Research (BAIR). Nos proporciona una API para construir y entrenar redes neuronales. La utilizaremos por su enfoque en velocidad y eficiencia en modelos de tipo "deep learning".
+
+- *Boost Graph Library(BGL):* biblioteca que nos facilita el manejo de grafos en c++. Al utilizar un sistema de ruteo entre varios puntos, el uso de grafos es completamente necesario. Esta biblioteca proporciona una amplia gama de estructuras de datos y algoritmos para el análisis y procesamiento de estas estructuras. Nos permite aplicar algoritmos como búsqueda de caminos más cortos, árboles de mínima expansión, entre otros. 
+
+- *Cmake:* es una herramienta para la generación de archivos de construcción y compilación para proyectos en C++. Nos otorga configuración flexible y compilación eficiente y es requisito en la rúbrica de evaluación.
 
 ## 📊  Diagramas
 ...
