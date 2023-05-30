@@ -72,10 +72,10 @@ Usaremos una aplicación web cuyo fin será agregar los nuevos productos que Ore
 PostgreSQL será el sistema de gestión de base de datos que utilizaremos. Es un sistema robusto y estable capaz de manejar el volumen de datos que Oregon Foods Perú utiliza cotidianamente y es escalable. Posee también las funciones de seguridad necesarias, tales como control de privilegios, autenticación y cifrado de datos. Por supuesto, es compatible con el lenguaje de programación C++, el cual utilizaremos para crear nuestro algoritmo de backpropagation. 
 
 #### Controlador de acceso
-Capa de acceso a datos segura: la información más "delicada" o "sensible" se encuentra en la base de datos de Oregon Foods. Utilizaremos técnicas como validación de datos de entrada, uso de consultas parametrizadas en la base de datos, entre otros, para evitar diferentes tipos de vulnerabilidades o ataques a la base de datos. 
+*Capa segura de acceso a datos:* la información más "delicada" o "sensible" se encuentra en la base de datos de Oregon Foods. Utilizaremos técnicas como validación de datos de entrada, uso de consultas parametrizadas en la base de datos, entre otros, para evitar diferentes tipos de vulnerabilidades o ataques a la base de datos. 
 
 #### Librerías/Paquetes
-- *Standar Template Library (STL):* la biblioteca estándar de C++ nos proporcionará diferentes tipos de estructuras de datos y algoritmos que utilizaremos a lo largo del desarrollo del proyecto. Los contenedores nos servirán para almacenar y manipular los datos y también para ordenar, filtrar y/o buscar diferentes elementos.
+- *Standard Template Library (STL):* la biblioteca estándar de C++ nos proporcionará diferentes tipos de estructuras de datos y algoritmos que utilizaremos a lo largo del desarrollo del proyecto. Los contenedores nos servirán para almacenar y manipular los datos y también para ordenar, filtrar y/o buscar diferentes elementos.
 
 - *TensorFlow:* biblioteca de aprendizaje automático de código abierto desarrollada por Google. Nos ofrece diferentes herramientas, junto con funciones que nos permitirán construir y entrenar redes neuronales a través del algoritmo "backpropagation".
 
