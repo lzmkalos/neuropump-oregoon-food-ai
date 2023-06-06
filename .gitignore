@@ -1,8 +1,12 @@
 #===: Don't push environment files
 env/
 .env
+node_modules/
 
 #===: Python trash files
 *.pyc
 __pycache__/
 .pytest_cache/
+
+python-flask-app/*.pyc
+python-flask-app/node_modules/
