@@ -3,12 +3,37 @@ import uuid;
 from datetime import datetime;
 from flask_sqlalchemy import SQLAlchemy;
 from flask_migrate import Migrate;
+from flask_wtf import FlaskForm;
+from wtforms import (
+    StringField, 
+    IntegerField,
+    PasswordField, 
+    SubmitField,
+    FileField
+);
+from wtforms.validators import (
+    InputRequired, 
+    Length, 
+    ValidationError,
+    NumberRange,
+    DataRequired,
+    Email,
+    Optional
+);
+from wtforms.validators import (
+    ValidationError,
+);
 
 
-#===: Importing section :==
-from routes import *;
-from app import db;
+#===: Setup
+db = SQLAlchemy();
+database_uri = "postgresql://postgres@localhost:5432/dev_oregon_db";
 
+def setup_db(app, database_path=database_uri):
+    app.config["SQLALCHEMY_DATABASE_URI"] = database_path;
+    db.app = app;
+    db.init_app(app);
+    db.create_all();
 
 #===: Model User
 class Costumer(db.Model):
@@ -17,7 +42,7 @@ class Costumer(db.Model):
     name = db.Column(db.String(255), nullable=False, unique=False);
     type = db.Column(db.String(255), nullable=False, unique=False);
     commercial = db.Column(db.String(255), unique=False, nullable=False);
-    schedule = db.Column(db.Datetime, default=datetime.utcnow(), nullable=False, unique=True);
+    schedule = db.Column(db.DateTime(), default=datetime.utcnow(), nullable=False, unique=True);
     observation = db.Column(db.String(500), nullable=False, unique=True);
     coordinates = db.Column(db.Float(), nullable=False, unique=True);
     zone = db.Column(db.Integer(), nullable=False, unique=True);
@@ -52,7 +77,7 @@ class Product(db.Model):
     def __init__(self, id, description, quantity, weight, unit):
         self.id = id;
         self.description = description;
-        self.quantity definid= quantity;
+        self.quantity= quantity;
         self.weight = weight;
         self.unit = unit;
     def serialize(self):
@@ -90,11 +115,11 @@ class Vehicle(db.Model):
         };
 
 class Order(db.Model):
-    __tablname__ = 'order';
+    __tablename__ = 'order';
     id = db.Column(db.String(255), primary_key=True, nullable=False);
     totalWeight = db.Column(db.Float(), nullable=False);
     unit = db.Column(db.String(10), nullable=False);
-    date = db.Column(db.Datetime, default=datetime.utcnow(), nullable=False, unique=False);
+    date = db.Column(db.DateTime(), default=datetime.utcnow(), nullable=False, unique=False);
     def __init__(self, id, totalWeight, unit):
         self.id = id;
         self.totalWeight = totalWeight;
@@ -110,7 +135,7 @@ class Order(db.Model):
 
 class Route(db.Model):
     __tablename__ = 'route';
-    orderID = db.Column(db.String(255), db.ForeignKey('order.id'), nullable=False);
+    orderID = db.Column(db.String(255), db.ForeignKey('order.id'), primary_key=True, nullable=False)
     posStart = db.Column(db.Float(), nullable=False, unique=False);
     postEnd = db.Column(db.Float(), nullable=False, unique=False);
     def __init__(self, posStart, posEnd):
@@ -118,9 +143,9 @@ class Route(db.Model):
         self.posEnd = posEnd;
     def serialize(self):
         return {
-            'id': self.id,
+            'orderId': self.orderId,
             'posStart': self.posStart,
-            'posEnd': self.posEnd,
+            'postEnd': self.posEnd,
         };
 
 #===: Tables Auth

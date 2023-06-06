@@ -1,27 +1,23 @@
 #===: Import section
 import os
-from flask  import Flask;
+from flask import (
+    Flask,
+    render_template,
+    request,
+    redirect
+);
 from flask_sqlalchemy import SQLAlchemy;
 from flask_bcrypt import Bcrypt;
 
+from .models import *;
+
 
 #===: Setup :===
-db = SQLAlchemy();
-dbConfig = "postgresql://postgres@localhost:5432/dev_oregon_db";
-
-
 def create_app():
-    app_ = Flask(
-        __name__,
-        template_folder='templates',
-        static_folder='static'
-    );
-    app_.config['SQLALCHEMY_DATABASE_URI'] = dbConfig;
-    app_.config["TEMPLATES_AUTO_RELOAD"] = True
-    db.init_app(app_);
-    with app_.app_context():
-        db.create_all();
-    return app_;
+    app = Flask(__name__)
+    with app.app_context():
+        app.config['UPLOAD_FOLDER'] = 'static/employees'
+        setup_db(app)
 
 
 #===: Pre-Deploy :===
@@ -32,7 +28,7 @@ bcrypt = Bcrypt(app);
 app.config['SECRET_KEY'] = SECRET_KEY;
 
 
-#===: Deploy :===
-if __name__ == '__main__':
-    from models import *;
-    app.run(debug=True);
+#===: Routes
+@app.route('/')
+def index():
+    return render_template('index.html');
