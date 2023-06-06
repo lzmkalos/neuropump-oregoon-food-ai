@@ -86,7 +86,7 @@ PostgreSQL será el sistema de gestión de base de datos que utilizaremos. Es un
 - *Cmake:* es una herramienta para la generación de archivos de construcción y compilación para proyectos en C++. Nos otorga configuración flexible y compilación eficiente y es requisito en la rúbrica de evaluación.
 
 ## 📊  Diagramas
-...
+<img src="src/entity-model.png"></img>
 
 
 ## 🎥 Video explicativo
