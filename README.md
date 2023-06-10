@@ -9,7 +9,7 @@
 - Vasco Díaz Hurtado [202210119]
 
 
-## 📝 Descripción
+## 📝 Description
 <p align="justify">
 Oregon Foods Perú es una empresa líder en la distribución e importación de alimentos premium en el mercado peruano. Su enfoque principal es abastecer tanto a tiendas individuales como a reconocidas cadenas de supermercados como Wong, Vivanda, Metro, entre otros. Con el fin de garantizar un suministro eficiente, la empresa cuenta con múltiples flotas terrestres que pueden ser rastreadas en tiempo real.
 </p>
@@ -35,8 +35,8 @@ Por otro lado, NeuroPump AI desarrollara una aplicación web que le ofrecerá a 
 </p>
 
 
-## ⚙️ Requisitos
-A continuación
+## ⚙️ Requirements
+A continuación se detallaran los principales requisitos de acuerdo a los actores involucrados. Es fundamental para el desarrollo de nuestro proyecto respetar nuestros objetivos, pues de ello depende el éxito del proyecto. Cabe mencionar que a medida que se esté desarrollando surgirán nuevas consideraciones e incluso modificaciones a la establecidas.
 
 #### Oregon Foods
 - Número de Camiones.
@@ -53,7 +53,7 @@ A continuación
 - Utilizar mecanismos propios de C++ como: Uso de plantillas de funciones, algoritmos, librería STDL, análisis BigO para medir el consumo de recursos. 
 
 
-## 🎯 Objetivos
+## 🎯 Goals
 1. Desarrollar una correcta implementación del algoritmo de backpropagation para resolver problemas de rutas más eficientes.
 
 2. Considerar incorporar un desarrollo front-end con buen UI, facilitando el uso portátil por medio de los usuarios.
@@ -62,19 +62,19 @@ A continuación
 
 
 ## 🚀 Deployment
-### PostgreSQL
+#### PostgreSQL
 Para poder correr la aplicación en PostgreSQL de manera local necesitamos crear nuestra base de datos, de la siguiente forma `CREATE DATABASE dev_oregon_db;`. Posteriormente debemos considerar crear un ambiente virtual dentro de python para correr el gestor de tablas, tal que `python3 -m veenv env`, siendo `env` el ambiente virtual.
 
-## 💽 Componentes
-#### Interfaz de usuario
+## 💽 Components
+#### User Interface (UI)
 Usaremos una aplicación web cuyo fin será agregar los nuevos productos que Oregon Foods Perú comercializará. Crearemos un formulario en HTML que se conectará con la base de datos para que los nuevos productos sean directamente agregados a la misma. La interfaz estará construida con la combinación de HTML, CSS, Python y JavaScript. HTML creará la interfaz en lenguaje marcado de hipertexto, CSS se encargará de darle un diseño agradable a la vista, Python será el encargado de configurar las librerías necesarias para poder conectarse a la base de datos y JavaScript servirá para programar todas las funciones necesarias en la interacción del usuario con la aplicación.
-#### Base de Datos
+#### Database
 PostgreSQL será el sistema de gestión de base de datos que utilizaremos. Es un sistema robusto y estable capaz de manejar el volumen de datos que Oregon Foods Perú utiliza cotidianamente y es escalable. Posee también las funciones de seguridad necesarias, tales como control de privilegios, autenticación y cifrado de datos. Por supuesto, es compatible con el lenguaje de programación C++, el cual utilizaremos para crear nuestro algoritmo de backpropagation. 
 
-#### Controlador de acceso
+#### Access controller
 *Capa segura de acceso a datos:* la información más "delicada" o "sensible" se encuentra en la base de datos de Oregon Foods. Utilizaremos técnicas como validación de datos de entrada, uso de consultas parametrizadas en la base de datos, entre otros, para evitar diferentes tipos de vulnerabilidades o ataques a la base de datos. 
 
-#### Librerías/Paquetes
+#### Libraries/Modules
 - *Standard Template Library (STL):* la biblioteca estándar de C++ nos proporcionará diferentes tipos de estructuras de datos y algoritmos que utilizaremos a lo largo del desarrollo del proyecto. Los contenedores nos servirán para almacenar y manipular los datos y también para ordenar, filtrar y/o buscar diferentes elementos.
 
 - *TensorFlow:* biblioteca de aprendizaje automático de código abierto desarrollada por Google. Nos ofrece diferentes herramientas, junto con funciones que nos permitirán construir y entrenar redes neuronales a través del algoritmo "backpropagation".
@@ -85,15 +85,21 @@ PostgreSQL será el sistema de gestión de base de datos que utilizaremos. Es un
 
 - *Cmake:* es una herramienta para la generación de archivos de construcción y compilación para proyectos en C++. Nos otorga configuración flexible y compilación eficiente y es requisito en la rúbrica de evaluación.
 
-## 📊  Diagramas
-<img src="src/entity-model.png"></img>
+
+## 📊  Diagrams
+
+#### Entity-Relation
+En nuestro proyecto hemos considerado implementar una base de datos, motivo por el que nos vimos en la necesidad de construir un diagrama para poder representar las entidades y relaciones que compartan información. Es así que en conjunto con nuestros conocimientos en Base de Datos, realizamos un diagrama de Relación Entidad (ER), el cual fue fundamental para desarrollar nuestra aplicación en Flask con SQLAlchemy que actúa como puente entre Python y PostgreSQL.
+<div align="center">
+  <img src="src/entity-model.png" width="800">
+</div>
 
 
-## 🎥 Video explicativo
+## 🎥 Hands-on video
 ...
 
 
-## 📚 Referencias
+## 📚 References
 ...
 
 ## LICENSE
